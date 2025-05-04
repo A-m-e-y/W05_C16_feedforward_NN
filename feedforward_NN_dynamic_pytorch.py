@@ -10,6 +10,7 @@ INPUT_SIZE = 4
 HIDDEN_SIZE = 10
 OUTPUT_SIZE = 1
 BATCH_SIZE = 1024
+REPEAT = 100
 CSV_FILE = "feedforward_layer_scaling.csv"
 
 # ---- Parse arguments
@@ -46,7 +47,7 @@ with open(CSV_FILE, 'a', newline='') as f:
     writer = csv.writer(f)
     for L in range(1, MAX_LAYERS + 1):
         times = []
-        for run in range(5):
+        for run in range(REPEAT):
             torch.manual_seed(run)
             model = DynamicFF(L).to(DEVICE)
             x = torch.randn(BATCH_SIZE, INPUT_SIZE).to(DEVICE)
@@ -66,7 +67,6 @@ with open(CSV_FILE, 'a', newline='') as f:
                 elapsed = (time.time() - t0) * 1000  # ms
 
             times.append(elapsed)
-
-        avg = sum(times[2:]) / 3
+        avg = sum(times[2:]) / (REPEAT - 2)
         print(f"{BACKEND} | Layers = {L} | Avg Time = {avg:.4f} ms")
         writer.writerow([BACKEND, L, BATCH_SIZE, f"{avg:.4f}"])

@@ -7,7 +7,7 @@
 #define HIDDEN_SIZE 10
 #define OUTPUT_SIZE 1
 #define BATCH_SIZE 1024
-#define REPEAT 5
+#define REPEAT 100
 #define CSV_FILE "feedforward_layer_scaling.csv"
 
 __device__ float relu(float x)
@@ -147,8 +147,12 @@ int main(int argc, char **argv)
             cudaEventDestroy(start);
             cudaEventDestroy(stop);
         }
-
-        float avg = (times[2] + times[3] + times[4]) / 3.0f;
+        float avg = 0.0f;
+        for (int i = 2; i < REPEAT; i++)
+        {
+            avg += times[i];
+        }
+        avg /= (REPEAT - 2);
         printf("Hidden Layers: %d | Avg Time (runs 3-5): %.4f ms\n", L, avg);
         fprintf(fp, "cuda,%d,%d,%.4f\n", L, BATCH_SIZE, avg);
     }
