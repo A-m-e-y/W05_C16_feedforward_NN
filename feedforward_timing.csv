@@ -1,0 +1,4 @@
+backend,batch_size,avg_time_ms
+cuda,1024,1.7364
+pytorch_cpu,1024,0.2540
+pytorch_gpu,1024,0.7452
