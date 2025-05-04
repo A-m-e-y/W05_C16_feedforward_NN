@@ -39,6 +39,10 @@ This project aims to:
 
 ## ⚙️ Experiment Setup
 
+### Hardware used
+* **GPU**: NVIDIA GeForce RTX 3050 4GB VRAM
+* **CPU**: Intel Core i5-12450H
+
 ### Model Architecture
 
 * **Input Size**: 4
@@ -55,9 +59,9 @@ This project aims to:
 
 ---
 
-## 📤 Collected Results
+## Collected Results
 
-### 🔹 Single Run Timing (Full Network Inference)
+### Single Run Timing (Full Network Inference)
 
 | Backend     | Batch Size | Avg Time (ms) |
 | ----------- | ---------- | ------------- |
@@ -71,11 +75,11 @@ This project aims to:
 </div>
 
 
-> 🔍 **Note**: CPU is fastest here due to small network size and low transfer overhead.
+> **Note**: CPU is fastest here due to small network size and low transfer overhead.
 
 ---
 
-### 🔹 Layer Scaling Timing (1 to 10 Hidden Layers)
+### Layer Scaling Timing (1 to 10 Hidden Layers)
 
 | Hidden Layers | CUDA (ms) | PyTorch CPU (ms) | PyTorch GPU (ms) |
 | ------------- | --------- | ---------------- | ---------------- |
@@ -123,7 +127,7 @@ This project aims to:
 
 ---
 
-## 🛠 How to Run
+## How to Run
 
 ### CUDA Benchmark (creates + overwrites CSV)
 
